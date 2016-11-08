@@ -17,8 +17,8 @@ app.controller('homeController', function($scope, $http, $auth, $location) {
         }
         $('#pics').justifiedImages({
             images: pics,
-            rowHeight: 200,
-            maxRowHeight: 400,
+            rowHeight: 250,
+            maxRowHeight: 500,
             margin: 1,
             thumbnailPath: function(pic, width, height) {
                 var h = parseInt(height / 100) * 100
