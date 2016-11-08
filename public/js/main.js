@@ -133,6 +133,7 @@ app.controller('homeController', function($scope, $http, $auth, $location) {
             margin: 1,
             thumbnailPath: function(pic, width, height) {
                 var h = parseInt(height / 100) * 100
+                h+= 100
                 h = Math.max(100, h)
                 h = Math.min(600, h)
                 return pic._src[h];
