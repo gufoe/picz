@@ -1,4 +1,4 @@
-app.controller('uploadController', function($scope, $http, $auth, $location) {
+app.controller('uploadController', function($scope, $http, $auth, $location, $status) {
     $scope.form = {}
     $scope.page.title = 'Upload'
     $scope.page.meta = null

@@ -19,7 +19,7 @@ app.controller('homeController', function($scope, $http, $auth, $location) {
             images: pics,
             rowHeight: 250,
             maxRowHeight: 500,
-            margin: 1,
+            margin: 5,
             thumbnailPath: function(pic, width, height) {
                 var h = parseInt(height / 100) * 100
                 h += 100
@@ -37,6 +37,7 @@ app.controller('homeController', function($scope, $http, $auth, $location) {
                 var img = $('<img/>')
                 img.css('width', pic.displayWidth)
                 img.css('height', pic.displayHeight)
+                img.css('margin-right', pic.marginRight)
                 img.attr('src', pic.src)
                     // img.attr('title', pic.title)
                 img.attr('pic', JSON.stringify(pic))
