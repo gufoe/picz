@@ -1,0 +1,27 @@
+<div class="container bs-docs-container">
+	<div id="image-big" ng-if="pic">
+		<div class="text-center">
+			<button class="btn btn-default" ng-click="move(-1)"><i class="fa fa-fw fa-arrow-left"></i> Previous</button>
+			<button class="btn btn-default" ng-click="move(1)"><i class="fa fa-fw fa-arrow-right"></i> Next</button>
+
+			<button class="btn btn-danger pull-right" ng-click="view($event)"><i class="fa fa-fw fa-times"></i></button>
+		</div>
+		<hr>
+		<div class="row">
+			<div class="col-md-5">
+				<img src="{{ pic.src.md }}" alt="{{ pic.title }}" style="width: 100%" />
+			</div>
+			<div class="col-md-7">
+				<h1>{{ pic.title }}</h1>
+				<p>
+					{{ pic.caption }}
+				</p>
+			</div>
+		</div>
+	</div>
+	<div id="pics" ng-hide="pic">
+		<div class="box photo col3" ng-repeat="pic in pics">
+			<a href="{{ pic.src.md }}" title="{{ pic.title }}" ng-click="view($event, pic)"><img ng-src="{{ pic.src.sm }}" alt="Stanley"/></a>
+		</div>
+	</div>
+</div>

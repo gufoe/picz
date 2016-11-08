@@ -1,0 +1,51 @@
+<style scoped>
+	.unselected li, .selected li {
+		cursor: pointer;
+	}
+
+	.selected li {
+		/*border: 1px solid #0a0;
+	background: #EEEEEE;*/
+	}
+
+</style>
+
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	</button>
+	<h4 class="modal-title">Search users</h4>
+</div>
+<div class="modal-body">
+	<div class="input-group" style="margin-bottom:10px">
+		<span class="input-group-addon">
+			Search
+		</span>
+		<input type="text" ng-model="email" class="form-control" placeholder="Search by email..." ng-change="search()" ng-model-options="{debounce:300}">
+		<span class="input-group-btn">
+			<button class="btn btn-success btn-striped">Search!</button>
+		</span>
+	</div>
+	<div ng-if="status" class="alert alert-{{ status.type }}">{{ status.msg }}</div>
+	<div ng-if="unselected().length">
+		<ul class="list-group unselected">
+			<li class="list-group-item" ng-repeat="u in unselected()" ng-click="select(u)">
+				{{ u.email }}
+			</li>
+		</ul>
+	</div>
+	<hr>
+	<i ng-if="!selected.length">No users selected</i>
+	<div ng-if="selected && selected.length">
+		<i>Selected users:</i>
+		<ul class="list-group selected">
+			<li class="list-group-item" ng-repeat="u in selected" ng-click="unselect(u)">
+				<i class="fa fa-fw fa-check" class="text-green"></i> {{ u.email }}
+			</li>
+		</ul>
+	</div>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-secondary" ng-click="cancel()">Close</button>
+	<button type="button" class="btn btn-primary" ng-click="done()">Save</button>
+</div>
