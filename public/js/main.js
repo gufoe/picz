@@ -76,6 +76,10 @@ app.controller('mainController', function($scope, $http, $auth, $location, AUTH_
     $scope.config = {
         title: 'Picz'
     }
+    $scope.page = {
+        title: null,
+        meta: null,
+    }
     $scope.logged = $auth.logged
     $scope.logout = $auth.logout
     $scope.message = 'mainc'
@@ -96,6 +100,11 @@ app.controller('mainController', function($scope, $http, $auth, $location, AUTH_
 })
 
 app.controller('homeController', function($scope, $http, $auth) {
+    $scope.page.title = 'Home'
+    $scope.page.meta = {
+        description: 'The best pictures of Gianmarco Canello',
+        keywords: 'pictures, images, download, free, bautiful'
+    }
     $http.get('/pics').then(res => {
         $scope.pics = res.data
 
@@ -145,6 +154,9 @@ app.controller('uploadController', function($scope, $http, $auth) {
     })
 
     $scope.upload = () => {
+        $scope.page.title = 'Upload'
+        $scope.page.meta = null
+
         var opts = {
             headers: {'Content-Type': undefined},
         }

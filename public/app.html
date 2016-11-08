@@ -28,7 +28,8 @@
         <script src="/js/user-picker.js" charset="utf-8"></script>
         <script src="/js/login-controller.js" charset="utf-8"></script>
         <script src="/js/main.js" charset="utf-8"></script>
-        <title>{{ config.title }}</title>
+        <title>{{ config.title + (page.title ? ' | ' + page.title : '') }}</title>
+        <meta ng-repeat="(i, meta) in page.meta" name="{{ i }}" content="{{ meta }}">
 
     </head>
 

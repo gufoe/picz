@@ -1,5 +1,11 @@
 
 app.controller('loginController', function($scope, $http, $auth) {
+    $scope.page.title = 'Login'
+    $scope.page.meta = {
+        description: 'Sign in the website to upload your images and share them with the world',
+        keywords: 'login, signup, register, pictures, images, download, free, bautiful'
+    }
+
     function update(status, error) {
         $scope.status = status
         $scope.error = error
