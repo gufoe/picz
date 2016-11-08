@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'Bungee Hairline';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Bungee Hairline'), local('BungeeHairline-Regular'), url('BungeeHairline-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Share Tech Mono';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Share Tech Mono'), local('ShareTechMono-Regular'), url('ShareTechMono-Regular.ttf') format('truetype');
+}
