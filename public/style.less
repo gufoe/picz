@@ -11,12 +11,16 @@
     &:-ms-input-placeholder      { @rules(); }
 }
 
+html {
+    height: 100%;
+    overflow-y: scroll!important;
+}
+
 body {
     background: @background;
     font-family: 'Share Tech Mono', cantarell, monospace;
     font-size: 150%;
     color: @accent;
-    overflow-y: scroll!important;
 }
 
 a {
@@ -176,7 +180,7 @@ hr {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: @primary;
+    background: @background;
     border: 0;
     border-radius: 0;
 }

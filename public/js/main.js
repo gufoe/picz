@@ -130,7 +130,6 @@ app.controller('homeController', function($scope, $http, $auth, $location) {
             images: pics,
             rowHeight: 200,
             maxRowHeight: 400,
-            overflowY: 'hidden',
             margin: 1,
             thumbnailPath: function(pic, width, height) {
                 var h = parseInt(height / 100) * 100
@@ -161,6 +160,7 @@ app.controller('homeController', function($scope, $http, $auth, $location) {
             gallery: {
                 enabled: true
             },
+            overflowY: 'hidden',
             callbacks: {
                 elementParse: item => {
                     var pic = JSON.parse(item.el.attr('pic'))
@@ -169,7 +169,14 @@ app.controller('homeController', function($scope, $http, $auth, $location) {
             }
         });
     }
-    $(window).resize(makeGallery)
+
+    var lastW = $(window).width()
+    $(window).resize(() => {
+        if ($(window).width() != lastW) {
+            lastW = $(window).width()
+            makeGallery()
+        }
+    })
 
     $http.get('/pics').then(res => {
         $scope.pics = res.data
