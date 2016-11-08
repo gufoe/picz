@@ -149,7 +149,7 @@ app.controller('homeController', function($scope, $http, $auth, $location) {
                 img.css('width', pic.displayWidth)
                 img.css('height', pic.displayHeight)
                 img.attr('src', pic.src)
-                img.attr('title', pic.title)
+                img.attr('title', pic.title + $('<small/>').html(pic.caption)[0].outerHTML)
                 img.attr('pic', JSON.stringify(pic))
                 return img[0].outerHTML
             },
