@@ -142,6 +142,8 @@ app.controller('homeController', function($scope, $http, $auth, $location) {
 
 app.controller('uploadController', function($scope, $http, $auth, $location) {
     $scope.form = {}
+    $scope.page.title = 'Upload'
+    $scope.page.meta = null
 
     function status(msg, err) {
         $scope.status = null
