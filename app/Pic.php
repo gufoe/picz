@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Hash;
 class Pic extends Model
 {
     protected $guarded = ['id'];
-    protected $visible = ['id', 'title', 'caption', 'created_at', 'src', 'resolution'];
-    protected $appends = ['src', 'resolution'];
+    protected $visible = ['id', 'title', 'caption', 'created_at', 'src', 'res'];
+    protected $appends = ['src', 'res'];
 
     public static $rules = [
         'title'    => 'required',
@@ -25,16 +25,22 @@ class Pic extends Model
 
     public function getSrcAttribute()
     {
-        $res = $this->image->res();
         return [
-            'md' => $this->image->thumb($res[0] / 2, $res[1] / 2),
-            'sm' => $this->image->thumb($res[0] / 4, $res[1] / 4),
+            600 => $this->image->thumb(0, 600),
+            500 => $this->image->thumb(0, 500),
+            400 => $this->image->thumb(0, 400),
+            300 => $this->image->thumb(0, 300),
+            200 => $this->image->thumb(0, 200),
+            100 => $this->image->thumb(0, 100),
         ];
     }
 
-    public function getResolutionAttribute()
+    public function getResAttribute()
     {
         $res = $this->image->res();
-        return "{$res[0]}x{$res[1]}";
+        return [
+            'w' => $res[0],
+            'h' => $res[1],
+        ];
     }
 }

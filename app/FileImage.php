@@ -35,7 +35,7 @@ class FileImage extends File
         return $link;
     }
 
-    public function thumb($w, $h)
+    public function thumb($w = 0, $h = 0)
     {
         $link = "/images/cache/{$this->token}-{$w}x{$h}.{$this->ext()}";
         $newpath = public_path($link);
@@ -44,12 +44,18 @@ class FileImage extends File
             mkdir(dirname($newpath), 0772, true);
         }
 
+        $opts = [
+            'crop' => true,
+        ];
+        if ($w) {
+            $opts['width'] = $w;
+        }
+        if ($h) {
+            $opts['height'] = $h;
+        }
+
         if (!file_exists($newpath)) {
-            $k = self::resize($this->path(), $newpath, [
-                'width' => $w,
-                'height' => $h,
-                'crop' => true,
-            ]);
+            $k = self::resize($this->path(), $newpath, $opts);
         }
 
         return $link;

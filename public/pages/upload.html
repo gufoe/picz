@@ -6,9 +6,8 @@
 
         <div class="row">
             <div class="col-md-3">
-                <button class="btn btn-default form-control" onclick="$('#image-input').click()" type="button">Select Image</button>
-                <hr ng-if="form.image">
-                <img id="image-preview" style="width: 100%; box-shadow: 0 0 10px #aaa; cursor: pointer" ng-if="form.image" onclick="$('#image-input').click()"/>
+                <button class="btn btn-default full-width" onclick="$('#image-input').click()" type="button" style="margin-bottom: 1em">Select Image</button>
+                <img id="image-preview" style="width: 100%; cursor: pointer; margin-bottom: 1em" ng-if="form.image" onclick="$('#image-input').click()"/>
             </div>
 
             <div class="col-md-5">

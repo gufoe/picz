@@ -1,0 +1,196 @@
+@primary: #F2784B;
+@accent: #67809F;
+@info: #19B5FE;
+@danger: #f33;
+@background: #22313F;
+@anim-fast: 0.5s;
+
+.placeholder(@rules) {
+    &::-webkit-input-placeholder { @rules(); }
+    &::-moz-placeholder          { @rules(); }
+    &:-ms-input-placeholder      { @rules(); }
+}
+
+body {
+    background: @background;
+    font-family: 'Share Tech Mono', cantarell, monospace;
+    font-size: 150%;
+    color: @accent;
+    overflow-y: scroll!important;
+}
+
+a {
+    color: @accent;
+    &:hover {
+        color: @primary;
+    }
+}
+
+[ng-view] a {
+    border-bottom: 1px solid @accent;
+}
+
+[ng-click] {
+    cursor: pointer;
+}
+@media (max-width: 1024px) {
+    .container {
+        width: auto;
+    }
+}
+
+* {
+    outline: 0!important;
+}
+
+h1,
+h2 {
+    font-family: 'Bungee Hairline', cursive;
+    font-weight: bold;
+    color: @primary;
+}
+
+.panel {
+    box-shadow: 0 0 10px #ccc;
+}
+
+.navbar li a:active,
+.navbar li a:focus,
+.navbar li a:hover,
+.navbar li.active a {
+    /*text-decoration: underline;*/
+    color: @primary;
+    background: transparent;
+}
+
+.nomargin {
+    margin: 0;
+}
+
+.btn.btn-primary {
+    transition: background-color @anim-fast;
+    background-color: @background;
+    color: @primary;
+    border-color: @primary;
+    font-size: inherit;
+    line-height: inherit;
+
+    &:active,
+    &:focus,
+    &:hover {
+        background-color: @primary;
+        border-color: @primary;
+        color: @background;
+    }
+}
+
+.btn.btn-default {
+    transition: background-color @anim-fast;
+    background-color: @background;
+    color: @accent;
+    border-color: @accent;
+    font-size: inherit;
+    line-height: inherit;
+
+    &:active,
+    &:focus,
+    &:hover {
+        background-color: @accent;
+        border-color: @accent;
+        color: @background;
+    }
+}
+
+.btn.btn-danger {
+    transition: background-color @anim-fast;
+    background-color: @background;
+    color: @danger;
+    border-color: @danger;
+    font-size: inherit;
+    line-height: inherit;
+
+    &:active,
+    &:focus,
+    &:hover {
+        background-color: @danger;
+        border-color: @danger;
+        color: @background;
+    }
+}
+
+input.form-control,
+textarea.form-control {
+    transition: background-color @anim-fast;
+    background-color: transparent;
+    color: #ddd;
+    border: 1px solid @accent;
+    font-size: inherit;
+    line-height: inherit;
+
+    &:focus {
+        border: 1px solid @primary;
+    }
+}
+
+.alert {
+    transition: background-color @anim-fast;
+    background-color: @background;
+    font-size: inherit;
+    line-height: inherit;
+
+    &.alert-danger {
+        color: @danger;
+        border-color: @danger;
+    }
+    &.alert-info {
+        color: @info;
+        border-color: @info;
+    }
+}
+
+.placeholder({
+    color: @accent!important;
+});
+
+hr {
+    border-top: 1px solid @accent;
+}
+
+.auto-width {
+    width: auto;
+}
+
+.full-width {
+    width: 100%;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+    background: @background;
+}
+
+::-webkit-scrollbar-button {
+    width: 0;
+    height: 0;
+}
+
+::-webkit-scrollbar-thumb {
+    background: @primary;
+    border: 0;
+    border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: @primary;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+}
+
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
