@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 class Pic extends Model
 {
     protected $guarded = ['id'];
-    protected $visible = ['id', 'title', 'caption', 'created_at', 'src', 'res'];
+    protected $visible = ['id', 'title', 'caption', 'created_at', 'src', 'res', 'user'];
     protected $appends = ['src', 'res'];
 
     public static $rules = [
@@ -21,6 +21,11 @@ class Pic extends Model
     public function image()
     {
         return $this->belongsTo('App\FileImage', 'image_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
     }
 
     public function getSrcAttribute()

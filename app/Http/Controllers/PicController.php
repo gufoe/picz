@@ -16,7 +16,14 @@ class PicController extends Controller
 
     public function list(Request $request)
     {
-        return Pic::orderBy('id', 'desc')->get();
+        $pics = Pic::orderBy('id', 'desc')
+            ->with('user');
+
+        if (($uid = $request->input('user_id'))) {
+            $pics->where('user_id', $uid);
+        }
+
+        return $pics->get();
     }
 
     public function upload(Request $req)
@@ -41,5 +48,13 @@ class PicController extends Controller
         \DB::commit();
 
         return success('pic', $image);
+    }
+
+    public function delete($id)
+    {
+        Pic::where('user_id', user()->id)
+            ->where('id', $id)
+            ->delete();
+        return success();
     }
 }

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 class User extends Model
 {
     protected $guarded = ['id'];
-    protected $visible = ['id', 'email'];
+    protected $visible = ['id', 'name', 'email'];
 
     public static $rules = [
         'email'    => 'required|unique:users',

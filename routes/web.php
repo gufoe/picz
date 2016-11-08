@@ -22,6 +22,7 @@ $app->get('users/self', 'UserController@self');
 
 $app->get('pics', 'PicController@list');
 $app->post('pics', 'PicController@upload');
+$app->delete('pics/{id}', 'PicController@delete');
 
 $app->get('/{path:.*}', function () use ($app) {
     return file_get_contents(base_path().'/public/app.html');

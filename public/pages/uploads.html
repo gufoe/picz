@@ -1,0 +1,18 @@
+<div class="container bs-docs-container" ng-init="refresh()">
+    <div class="alert alert-warning text-center" ng-if="pics && !pics.length">
+        You haven't uploaded any picture yet.
+    </div>
+    <div ng-repeat="pic in pics" style="margin: 1em 0" class="col-md-6">
+        <div style="height: 200px; background-image: url({{pic.src[200]}})"  class="bg col-md-5">
+
+        </div>
+        <div class="col-md-7">
+            <h2 class="nomargin">{{ pic.title }}</h2>
+            <p>
+                {{ pic.caption }}
+            </p>
+            <a ng-click="delete(pic)" class="text-danger"><i class="fa fa-times"></i> delete</a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
