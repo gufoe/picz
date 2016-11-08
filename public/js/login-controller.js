@@ -1,5 +1,5 @@
 
-app.controller('loginController', function($scope, $http, $auth) {
+app.controller('loginController', function($scope, $http, $auth, $location) {
     $scope.page.title = 'Login'
     $scope.page.meta = {
         description: 'Sign in the website to upload your images and share them with the world',
@@ -42,7 +42,7 @@ app.controller('loginController', function($scope, $http, $auth) {
             res => {
                 $auth.setToken(res.data.token)
                 $auth.setUser(res.data.user)
-                location.href = '#/'
+                $location.path('/')
             },
             res => {
                 update(null, res.data.error)

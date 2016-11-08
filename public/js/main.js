@@ -1,4 +1,4 @@
-app.config(function($routeProvider) {
+app.config(function($routeProvider, $locationProvider) {
     $routeProvider
         .when('/', {
             templateUrl: '/pages/home.html',
@@ -14,6 +14,8 @@ app.config(function($routeProvider) {
             templateUrl: '/pages/upload.html',
             controller: 'uploadController'
         })
+
+    $locationProvider.html5Mode(true)
 })
 
 app.factory('AuthInterceptor', function($rootScope, $q, AUTH_EVENTS) {
@@ -72,6 +74,12 @@ app.filter('bytes', function() {
     }
 })
 
+app.filter('datify', function() {
+    return function(date) {
+        return new Date(date)
+    }
+})
+
 app.controller('mainController', function($scope, $http, $auth, $location, AUTH_EVENTS, $userPicker) {
     $scope.config = {
         title: 'Picz'
@@ -82,13 +90,12 @@ app.controller('mainController', function($scope, $http, $auth, $location, AUTH_
     }
     $scope.logged = $auth.logged
     $scope.logout = $auth.logout
-    $scope.message = 'mainc'
     $scope.user = () => {
         return $auth.getUser()
     }
     $scope.$on(AUTH_EVENTS.notAuthenticated, function(event) {
         $auth.setToken(null)
-        location.href = '#/login'
+        $location.path('/login');
     })
 
     $scope.isMenu = path => {
@@ -96,15 +103,18 @@ app.controller('mainController', function($scope, $http, $auth, $location, AUTH_
             return true
         return false
     }
-
 })
 
-app.controller('homeController', function($scope, $http, $auth) {
+app.controller('homeController', function($scope, $http, $auth, $location) {
     $scope.page.title = 'Home'
     $scope.page.meta = {
         description: 'The best pictures of Gianmarco Canello',
         keywords: 'pictures, images, download, free, bautiful'
     }
+
+    $scope.pic = null
+    $scope.pics = null
+
     $http.get('/pics').then(res => {
         $scope.pics = res.data
 
@@ -112,10 +122,10 @@ app.controller('homeController', function($scope, $http, $auth) {
             var $pics = $('#pics')
             $pics.imagesLoaded(() => {
                 $pics.masonry({
-                    itemSelector : '.box'
+                    itemSelector: '.box',
                 })
             })
-        })
+        }, 10)
     })
 
     $scope.view = ($event, pic) => {
@@ -125,14 +135,14 @@ app.controller('homeController', function($scope, $http, $auth) {
     }
 
     $scope.move = n => {
-        console.log(n)
         var i = $scope.pics.indexOf($scope.pic)
         $scope.pic = $scope.pics[i + n]
     }
 })
 
-app.controller('uploadController', function($scope, $http, $auth) {
+app.controller('uploadController', function($scope, $http, $auth, $location) {
     $scope.form = {}
+
     function status(msg, err) {
         $scope.status = null
         if (!msg) return
@@ -143,11 +153,9 @@ app.controller('uploadController', function($scope, $http, $auth) {
     }
     $scope.$watch('form.image', () => {
         if (!$scope.form.image) return
-        console.log($scope.form.image)
 
         var reader = new FileReader();
-        reader.onload = function (e) {
-            console.log(e.target)
+        reader.onload = function(e) {
             $('#image-preview').attr('src', e.target.result);
         }
         reader.readAsDataURL($scope.form.image);
@@ -158,20 +166,19 @@ app.controller('uploadController', function($scope, $http, $auth) {
         $scope.page.meta = null
 
         var opts = {
-            headers: {'Content-Type': undefined},
+            headers: {
+                'Content-Type': undefined
+            },
         }
         status('Uploading...')
         $http.post('/pics', objToFormData($scope.form), opts).then(
             res => {
                 status('Done!')
-                location.href = '#/'
-                console.log(res)
+                $location.path('/')
             },
             res => {
-                console.log(res)
-                status('Upload failed: '+res.data.error, true)
-            },
-            event => { console.log(event) }
+                status('Upload failed: ' + res.data.error, true)
+            }
         )
     }
 })

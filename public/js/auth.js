@@ -1,4 +1,4 @@
-app.service('$auth', function($q, $http, $rootScope) {
+app.service('$auth', function($q, $http, $location) {
     var self = this
 
     function refreshHeaders() {
@@ -28,7 +28,7 @@ app.service('$auth', function($q, $http, $rootScope) {
         refreshHeaders()
     }
     this.check = () => {
-        if (!Token.get()) location.href = '#/login'
+        if (!Token.get()) $location.path('/login')
     }
 
     this.logged = () => {
@@ -39,7 +39,7 @@ app.service('$auth', function($q, $http, $rootScope) {
         $http.delete('/sessions').then(
             res => {
                 self.setToken(null)
-                location.href = '#/login'
+                $location.path('/login')
             }
         )
     }

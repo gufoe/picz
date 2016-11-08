@@ -9,19 +9,23 @@
 		<hr>
 		<div class="row">
 			<div class="col-md-5">
-				<img src="{{ pic.src.md }}" alt="{{ pic.title }}" style="width: 100%" />
+				<img ng-src="{{ pic.src.md }}" alt="{{ pic.title }}" style="width: 100%" />
 			</div>
 			<div class="col-md-7">
 				<h1>{{ pic.title }}</h1>
+				<i>Uploaded on {{ pic.created_at | datify | date }}</i>
+				<hr>
 				<p>
 					{{ pic.caption }}
 				</p>
 			</div>
 		</div>
 	</div>
-	<div id="pics" ng-hide="pic">
-		<div class="box photo col3" ng-repeat="pic in pics">
-			<a href="{{ pic.src.md }}" title="{{ pic.title }}" ng-click="view($event, pic)"><img ng-src="{{ pic.src.sm }}" alt="Stanley"/></a>
+	<div id="pics" ng-if="pics && pics.length" ng-hide="pic">
+		<div class="box" ng-repeat="pic in pics">
+			<a href="{{ pic.src.md }}" title="{{ pic.title }}" ng-click="view($event, pic)">
+				<img ng-src="{{ pic.src.sm }}" alt="{{ pic.title }}" style="height: 200px; border: 5px solid transparent"/>
+			</a>
 		</div>
 	</div>
 </div>

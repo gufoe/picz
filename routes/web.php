@@ -11,10 +11,6 @@
 |
 */
 
-$app->get('/', function () use ($app) {
-    return file_get_contents(base_path().'/public/app.html');
-});
-
 // Sessions
 $app->post('sessions', 'SessionController@login');
 $app->delete('sessions', 'SessionController@logout');
@@ -26,3 +22,7 @@ $app->get('users/self', 'UserController@self');
 
 $app->get('pics', 'PicController@list');
 $app->post('pics', 'PicController@upload');
+
+$app->get('/{path:.*}', function () use ($app) {
+    return file_get_contents(base_path().'/public/app.html');
+});
