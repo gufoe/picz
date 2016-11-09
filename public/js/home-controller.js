@@ -35,7 +35,7 @@ app.controller('homeController', function($scope, $http, $auth, $location) {
             },
             template: pic => {
                 var img = $('<img/>')
-                img.css('width', pic.displayWidth)
+                img.css('width', pic.displayWidth-pic.marginRight)
                 img.css('height', pic.displayHeight)
                 img.css('margin-right', pic.marginRight)
                 img.attr('src', pic.src)
