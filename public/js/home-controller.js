@@ -35,6 +35,7 @@ app.controller('homeController', function($scope, $http, $auth, $location) {
             },
             template: pic => {
                 var img = $('<img/>')
+                img.addClass('loading')
                 img.css('width', pic.displayWidth-pic.marginRight)
                 img.css('height', pic.displayHeight)
                 img.css('margin-right', pic.marginRight)
@@ -42,6 +43,7 @@ app.controller('homeController', function($scope, $http, $auth, $location) {
                 img.attr('alt', pic.title)
                 img.attr('title', pic.title)
                 img.attr('pic', JSON.stringify(pic))
+                img.attr('onload', '$(this).removeClass(\'loading\')')
                 return img[0].outerHTML
             },
         })
@@ -55,14 +57,6 @@ app.controller('homeController', function($scope, $http, $auth, $location) {
                         $('<small/>').html(pic.caption)[0].outerHTML +
                         $('<small/>').html('by ' + pic.user.name)[0].outerHTML
                 },
-                markup: '<div class="mfp-figure">'+
-            '<div class="mfp-close"></div>'+
-            '<div class="mfp-img"></div>'+
-            '<div class="mfp-bottom-bar">'+
-              '<div class="mfp-title"></div>'+
-              '<div class="mfp-counter"></div>'+
-            '</div>'+
-          '</div>',
             },
             gallery: {
                 enabled: true,
