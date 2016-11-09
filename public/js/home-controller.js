@@ -36,6 +36,7 @@ app.controller('homeController', function($scope, $http, $auth, $location) {
             template: pic => {
                 var img = $('<img/>')
                 img.addClass('loading')
+                img.addClass('grayscale')
                 img.css('width', pic.displayWidth-pic.marginRight)
                 img.css('height', pic.displayHeight)
                 img.css('margin-right', pic.marginRight)

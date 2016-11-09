@@ -284,9 +284,17 @@ header {
 }
 
 
-img.loading {
-    opacity: 0;
-}
 img {
     transition: opacity 1s;
+    &.loading {
+        opacity: 0;
+    }
+    &.grayscale {
+        transition: filter .3s;
+        filter: grayscale(80%);
+        &:hover {
+            filter: grayscale(0%);
+        }
+    }
 }
+
