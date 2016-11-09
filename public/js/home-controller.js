@@ -39,7 +39,8 @@ app.controller('homeController', function($scope, $http, $auth, $location) {
                 img.css('height', pic.displayHeight)
                 img.css('margin-right', pic.marginRight)
                 img.attr('src', pic.src)
-                    // img.attr('title', pic.title)
+                img.attr('alt', pic.title)
+                img.attr('title', pic.title)
                 img.attr('pic', JSON.stringify(pic))
                 return img[0].outerHTML
             },
@@ -50,17 +51,23 @@ app.controller('homeController', function($scope, $http, $auth, $location) {
             image: {
                 titleSrc: (item) => {
                     var pic = JSON.parse(item.el.attr('pic'))
-                    console.log(pic.title + $('<small/>').html(pic.caption)[0].outerHTML)
                     return pic.title +
                         $('<small/>').html(pic.caption)[0].outerHTML +
                         $('<small/>').html('by ' + pic.user.name)[0].outerHTML
                 },
+                markup: '<div class="mfp-figure">'+
+            '<div class="mfp-close"></div>'+
+            '<div class="mfp-img"></div>'+
+            '<div class="mfp-bottom-bar">'+
+              '<div class="mfp-title"></div>'+
+              '<div class="mfp-counter"></div>'+
+            '</div>'+
+          '</div>',
             },
             gallery: {
                 enabled: true,
                 preload: [0, 2],
             },
-            overflowY: 'hidden',
             callbacks: {
                 elementParse: item => {
                     var pic = JSON.parse(item.el.attr('pic'))
