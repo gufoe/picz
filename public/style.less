@@ -290,10 +290,11 @@ img {
         opacity: 0;
     }
     &.grayscale {
-        transition: filter .3s;
-        filter: grayscale(80%);
+        transition: transform .1s;
+        // filter: grayscale(80%);
         &:hover {
-            filter: grayscale(0%);
+            // filter: grayscale(0%);
+            transform: scale(1.03);
         }
     }
 }
