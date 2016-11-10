@@ -285,15 +285,20 @@ header {
 
 
 img {
-    transition: opacity 1s, transform .1s;
+    transition:
+        opacity 1s,
+        transform .2s,
+        box-shadow .4s;
     &.loading {
         opacity: 0;
     }
     &.grayscale {
-        // filter: grayscale(80%);
+        position: relative;
+        z-index: 1;
         &:hover {
-            // filter: grayscale(0%);
-            transform: scale(1.03);
+            transform: scale(1.1);
+            box-shadow: 0 0 30px #000;
+            z-index: 2;
         }
     }
 }
