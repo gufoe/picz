@@ -3,6 +3,5 @@
 Homestead.json
 Homestead.yaml
 .env
-composer.lock
 .php_cs*
 update.sh
