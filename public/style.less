@@ -285,12 +285,11 @@ header {
 
 
 img {
-    transition: opacity 1s;
+    transition: opacity 1s, transform .1s;
     &.loading {
         opacity: 0;
     }
     &.grayscale {
-        transition: transform .1s;
         // filter: grayscale(80%);
         &:hover {
             // filter: grayscale(0%);
