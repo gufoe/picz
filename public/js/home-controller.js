@@ -48,28 +48,28 @@ app.controller('homeController', function($scope, $http, $auth, $location) {
                 return img[0].outerHTML
             },
         })
-        $('#pics').magnificPopup({
-            type: 'image',
-            delegate: 'img',
-            image: {
-                titleSrc: (item) => {
-                    var pic = JSON.parse(item.el.attr('pic'))
-                    return pic.title +
-                        $('<small/>').html(pic.caption)[0].outerHTML +
-                        $('<small/>').html('by ' + pic.user.name)[0].outerHTML
-                },
-            },
-            gallery: {
-                enabled: true,
-                preload: [0, 2],
-            },
-            callbacks: {
-                elementParse: item => {
-                    var pic = JSON.parse(item.el.attr('pic'))
-                    item.src = pic._src[600]
-                }
-            }
-        });
+        // $('#pics').magnificPopup({
+        //     type: 'image',
+        //     delegate: 'img',
+        //     image: {
+        //         titleSrc: (item) => {
+        //             var pic = JSON.parse(item.el.attr('pic'))
+        //             return pic.title +
+        //                 $('<small/>').html(pic.caption)[0].outerHTML +
+        //                 $('<small/>').html('by ' + pic.user.name)[0].outerHTML
+        //         },
+        //     },
+        //     gallery: {
+        //         enabled: true,
+        //         preload: [0, 2],
+        //     },
+        //     callbacks: {
+        //         elementParse: item => {
+        //             var pic = JSON.parse(item.el.attr('pic'))
+        //             item.src = pic._src[600]
+        //         }
+        //     }
+        // });
     }
 
     var lastW = $(window).width()
